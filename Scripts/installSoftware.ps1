@@ -57,7 +57,7 @@ function put_machine_domain {
 	$user_domain_admin = 'userDomainAdministratorHere'
 	$domain_name = 'domain.net'
 	
-	Set-DnsClientServerAddress "Ethernet" -ServerAddresses ("192.168.0.10","8.8.8.8")
+	Set-DnsClientServerAddress "Ethernet" -ServerAddresses ("8.8.4.4","8.8.8.8")
 	Add-Computer -DomainName $domain_name  -NewName $machine_new_name -Credential $domain_name\$user_domain_admin -Restart
 }
 
