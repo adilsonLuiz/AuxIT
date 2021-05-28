@@ -2,7 +2,7 @@
 Um projeto de Helpdesk para todos Helpdesk.
 Como profissionais de suporte, em muitas empresas que não possui o parque de tecnologia muito avançado, nos deparamos diversas vezes com muitos processos repetitivos.
 Eu mesmo passei muito por isso, e esta ideia nasceu assim que comecei a estudar sobre Python.
-Este projeto tem como foca automatizar as tarefas mais banais dentro da area de help desk, com foco em empresas que não possui muita tecnologia.
+Este projeto tem como foca automatizar as tarefas repetitivas dentro da area de help desk, com foco em empresas que não possui muita tecnologia.
 
 
 
