@@ -19,6 +19,7 @@ class TaskOrganizer(TaskCommands):
         self.default_extension = self.get_extension_files_default()
         self.init_default_dir()  # Checa e cria os diretorios para organização
 
+
     def get_default_dir(self):
         """ 
             Define uma lista com o caminho dos diretorios default para mover os arquivos
@@ -34,6 +35,7 @@ class TaskOrganizer(TaskCommands):
         ]
         )
 
+
     def get_extension_files_default(self) -> dict:
         """
             Define uma estrutura padrão que contem dados relacionados a extesão de arquivos.
@@ -46,6 +48,7 @@ class TaskOrganizer(TaskCommands):
                  'picture': ['.jpeg', '.mpeg']
                  }
         )
+
 
     def get_extension_files_list(self, list_file) -> list:
         """
@@ -76,11 +79,13 @@ class TaskOrganizer(TaskCommands):
             list_extension[1].append(file_stat[1])
         return list_extension
 
+
     def set_default_path_to_move_files(self, path: str):
         """  
             Atribui um novo valor ao diretorio padrão para mover os arquivos.
         """
         self.default_path_to_move_files = path
+
 
     def make_radom_files(self, qtd_files_to_create=5,
                          extension_file='txt',
@@ -115,6 +120,7 @@ class TaskOrganizer(TaskCommands):
             )
             temp_file_name = str(randint(0, RAND_RANGE))
 
+
     def init_default_dir(self) -> None:
         """  
             Cria os diretorios default do programa no CWD atual, para armazenar os arquivos organizados.
@@ -130,6 +136,7 @@ class TaskOrganizer(TaskCommands):
             else:
                 self.create_dir(dir)
                 print(dir)
+
 
     def organize_files(self, path_to_organize='desktop', dest_path='document') -> None:
         """
@@ -196,6 +203,7 @@ class TaskOrganizer(TaskCommands):
             except IndexError:
                 print(f'Todos arquivos foram movidos com sucesso')
                 print(f'Local raiz onde arquivos estão: "{self.default_path_to_move_files}"')
+
 
     def delete_file_by_extension(self, path_to_delete_files='downloads') -> None:
         """  

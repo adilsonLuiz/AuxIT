@@ -36,14 +36,15 @@ class TaskBackup(BackupPropriets):
 
     def get_data_to_backup_home(self) -> list:
         """  
-            Define todos os arquivos que serão salvos no diretorio raiz do usuario.
+            Define todos os arquivos e diretorios 
+            que serão salvos no diretorio raiz do usuario.
         """
         home_files_backup = [
                             'Desktop','Downloads','Documents',
                             'Videos','Pictures', 'appData'
                             ]
-    
-        return ['Desktop']
+
+        return home_files_backup
 
     def set_percent_backup(self, valuer:int):
         self.percent_backup = valuer
@@ -82,10 +83,11 @@ class TaskBackup(BackupPropriets):
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
         
         for file in self.files_to_backup:
+            # Pega o diretorio base de origem e junta com o nome do diretorio.
             file_to_backup = self.dir_source_backup + file
             print(f'{file_to_backup} -> {dest_path + file}')
             try:
-                shutil.copytree(join(self.dir_source_backup + file), join(dest_path, file))
+                shutil.copytree(join(self.dir_source_backup, file), join(dest_path, file))
             except shutil.Error:
                 pass
             except PermissionError:
@@ -93,7 +95,7 @@ class TaskBackup(BackupPropriets):
         if self.compress_backup:
             self.compress_backup_file(dest_path)
 
-        self.delete_all_file(dest_path)
+        #self.delete_all_file(dest_path)
             
 
     
