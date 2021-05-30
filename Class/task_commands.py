@@ -123,5 +123,4 @@ class TaskCommands(SystemPropriets):
                 abs_path (str): Caminho absoluto do diretorio
         """
         from os import system as cmd
-
         cmd(f'rmdir {abs_path} /q /s')

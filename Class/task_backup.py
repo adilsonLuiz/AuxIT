@@ -1,4 +1,4 @@
-from .backup_propriets import BackupPropriets
+from Class.backup_propriets import BackupPropriets
 
 
 class TaskBackup(BackupPropriets):
@@ -43,7 +43,7 @@ class TaskBackup(BackupPropriets):
                             'Videos','Pictures', 'appData'
                             ]
     
-        return home_files_backup
+        return ['Desktop']
 
     def set_percent_backup(self, valuer:int):
         self.percent_backup = valuer
@@ -77,9 +77,6 @@ class TaskBackup(BackupPropriets):
     def execute_backup(self):
         import shutil
         from os.path import join
-        
-        
-
 
         # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'

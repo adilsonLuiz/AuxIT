@@ -83,9 +83,5 @@ def menu_backup():
 
 
 
-
-
-
-
 def clear_scream():
     os.system('cls || clear')

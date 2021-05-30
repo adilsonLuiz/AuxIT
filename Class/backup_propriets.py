@@ -1,7 +1,7 @@
 
-#from .organizador import Organizador
+from Class.task_organizer import TaskOrganizer
 
-class BackupPropriets(Organizador):
+class BackupPropriets(TaskOrganizer):
     """  
         Ira possuir propriedades realacionada a entidade backup  
     """

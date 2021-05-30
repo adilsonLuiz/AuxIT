@@ -1,6 +1,7 @@
 from Modules import menu
 from Class.task_commands import TaskCommands
 from Class.task_organizer import TaskOrganizer
+from Class.task_backup import TaskBackup
 
 def read_option(op):
     while True:
@@ -19,6 +20,9 @@ def read_submodule(menu_print) -> int:
     elif menu_print== 'files':
         menu.menu_files()
         return read_option('Informe um modulo: ')
+    elif menu_print == 'backup':
+        menu.menu_backup()
+        return read_option('Informe um modulo: ')
 
 def check_modules_options(main_module):
     if main_module == 1: # User option
@@ -35,7 +39,23 @@ def check_modules_options(main_module):
         sub_module = read_submodule('files')
         if sub_module == 1:
             files.organize_files()
+        elif sub_module == 2:
+            files.organize_files('downloads')
+        elif sub_module == 3:
+            files.organize_files('document')
+        elif sub_module == 4:
+            #TODO criar logica para apagar pastas.
+            files.delete_file_by_extension()
+        elif sub_module == 5:
+            files.make_radom_files()
+    elif main_module == 4: # Backup
+        backup = TaskBackup()
+        sub_module = read_submodule('backup')
+        if sub_module == 1:
+            backup.execute_backup()
+
+
         
 
-t = TaskOrganizer()
+
 
