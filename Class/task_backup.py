@@ -1,5 +1,5 @@
 from Class.backup_propriets import BackupPropriets
-from Modules.validator import read_option
+from Modules import validator
 
 class TaskBackup(BackupPropriets):
     """  
@@ -74,8 +74,8 @@ class TaskBackup(BackupPropriets):
         """  
             Coleta do usuário propriedades basicas sobre execução do backup
         """
-        bkp_compress = read_option('Comprimir backup[1 - Sim\2 - Não]: ')
-        bkp_type = read_option('1 - Backup Full\n2 - Ligth: ')
+        bkp_compress = validator.read_option('Comprimir backup[1 - Sim 2- Não]: ')
+        bkp_type = validator.read_option('1 - Backup Full(Com appData)\n2 - Ligth(Sem appData) \n\nType:')
         if bkp_compress == 1:
             self.compress_backup = True
         else:
