@@ -78,12 +78,17 @@ class TaskBackup(BackupPropriets):
         else:
             pass
 
-    def execute_backup(self):
+
+    def default_backup(self):
+        """  
+            Realiza um backup leve, excluindo a pasta AppData da lista de pastas para backup
+        """
         import shutil
         from os.path import join
 
         # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
+        self.files_to_backup.remove('appData') # Remove appData foulder to make easy backup
         
         for file in self.files_to_backup:
             # Pega o diretorio base de origem e junta com o nome do diretorio.
@@ -95,6 +100,16 @@ class TaskBackup(BackupPropriets):
                 pass
             except PermissionError:
                 pass
+
+
+    def execute_backup(self):
+        import shutil
+        from os.path import join
+
+        # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
+        dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
+
+        self.default_backup()
         if self.compress_backup:
             try:
                 self.compress_backup_file(dest_path)
@@ -103,8 +118,8 @@ class TaskBackup(BackupPropriets):
             finally:
                 print('Backup Finalizado')
 
-
-        #self.delete_all_file(dest_path)
+        #TODO excluir arquivo de backup do HD
+        
             
 
     
