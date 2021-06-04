@@ -25,6 +25,9 @@ def read_submodule(menu_print) -> int:
         return read_option('Informe um modulo: ')
 
 def check_modules_options(main_module):
+    """  
+        Executa os modulos do programa com base na escolha do modulo principal
+    """
     if main_module == 1: # User option
         user = TaskCommands()
         sub_module = read_submodule('user')
@@ -44,15 +47,17 @@ def check_modules_options(main_module):
         elif sub_module == 3:
             files.organize_files('document')
         elif sub_module == 4:
-            #TODO criar logica para apagar pastas.
+            # TODO criar logica para apagar pastas.
             files.delete_file_by_extension()
         elif sub_module == 5:
             files.make_radom_files()
-    elif main_module == 4: # Backup
+    elif main_module == 4: # Backup module
         backup = TaskBackup()
         sub_module = read_submodule('backup')
         if sub_module == 1:
+            backup.check_backup_properties()
             backup.execute_backup()
+
 
 
         

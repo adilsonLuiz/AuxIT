@@ -1,5 +1,5 @@
 from Class.backup_propriets import BackupPropriets
-
+from Modules.validator import read_option
 
 class TaskBackup(BackupPropriets):
     """  
@@ -7,10 +7,6 @@ class TaskBackup(BackupPropriets):
 
         Attributes:
             percent_backup (int): Armazena o percentual atual do backup ja realizado
-            backup_finish (bool): Armazena um bool, para indicar se o backup finalizou
-            report_error_backup (dict): Armazena um dict, para estruturar os erros durante o processo de backup
-            compress_backup (bool): Armazena um bool, indicando se o backup vai ser comprimido
-            backup_to_mail (bool): Chave para verificar se backup vai ser enviado por e-mail.
             files_to_backup (list): Recebe uma list com todos os nome de diretoros para backup
             backup_name_now (str): Armazena o nome atual escolhido para o arquivo do backup no momento
 
@@ -25,11 +21,6 @@ class TaskBackup(BackupPropriets):
     """
     def __init__(self):
         super().__init__()
-        self.percent_backup = 0
-        self.backup_finish = False
-        self.report_error_backup = {}
-        self.compress_backup = True
-        self.backup_to_mail = False
         self.files_to_backup = self.get_data_to_backup_home()
         self.backup_name_now = self.get_backup_file_name()
         self.create_backup_dir()
@@ -79,6 +70,22 @@ class TaskBackup(BackupPropriets):
             pass
 
 
+    def check_backup_properties(self):
+        """  
+            Coleta do usuário propriedades basicas sobre execução do backup
+        """
+        bkp_compress = read_option('Comprimir backup[1 - Sim\2 - Não]: ')
+        bkp_type = read_option('1 - Backup Full\n2 - Ligth: ')
+        if bkp_compress == 1:
+            self.compress_backup = True
+        else:
+            self.compress_backup = False
+
+        if bkp_type == 1:
+            self.full_backup = True
+        else:
+            self.full_backup = False
+
     def default_backup(self):
         """  
             Realiza um backup leve, excluindo a pasta AppData da lista de pastas para backup
@@ -101,6 +108,28 @@ class TaskBackup(BackupPropriets):
             except PermissionError:
                 pass
 
+    def full_backup(self):
+        """  
+            Realiza o backup completo do user, incluindo a pasta appData
+        """
+
+        import shutil
+        from os.path import join
+
+        # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
+        dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
+        
+        for file in self.files_to_backup:
+            # Pega o diretorio base de origem e junta com o nome do diretorio.
+            file_to_backup = self.dir_source_backup + file
+            print(f'{file_to_backup} -> {dest_path + file}')
+            try:
+                shutil.copytree(join(self.dir_source_backup, file), join(dest_path, file))
+            except shutil.Error:
+                pass
+            except PermissionError:
+                pass
+
 
     def execute_backup(self):
         import shutil
@@ -109,7 +138,10 @@ class TaskBackup(BackupPropriets):
         # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
 
-        self.default_backup()
+        
+        if self.backup_mode == 'default_mode':
+            self.default_backup()
+        
         if self.compress_backup:
             try:
                 self.compress_backup_file(dest_path)

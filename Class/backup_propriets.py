@@ -3,7 +3,14 @@ from Class.task_organizer import TaskOrganizer
 
 class BackupPropriets(TaskOrganizer):
     """  
-        Ira possuir propriedades realacionada a entidade backup  
+        Ira possuir propriedades realacionada a entidade backup
+        
+        Attributes:
+            percent_backup (int): Armazena o percentual atual do backup ja realizado
+            backup_finish (bool): Armazena um bool, para indicar se o backup finalizou
+            report_error_backup (dict): Armazena um dict, para estruturar os erros durante o processo de backup
+            compress_backup (bool): Armazena um bool, indicando se o backup vai ser comprimido
+            backup_to_mail (bool): Chave para verificar se backup vai ser enviado por e-mail.
     """
     def __init__(self):
         super().__init__()
@@ -11,6 +18,12 @@ class BackupPropriets(TaskOrganizer):
         self.dir_dest_backup = self.paths_user['homeUser']
         self.backup_file_name = 'Backup' + self.HOSTNAME.upper() + self.time_system \
         + '_' + self.date_system
+        self.full_backup = False
+        self.percent_backup = 0
+        self.backup_finish = False
+        self.report_error_backup = {}
+        self.compress_backup = True
+        self.backup_to_mail = False
         self.cont_files_backup = 0
         self.cont_dir_backup = 0
         self.size_backup = 0
