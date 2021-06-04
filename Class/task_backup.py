@@ -69,7 +69,6 @@ class TaskBackup(BackupPropriets):
         else:
             pass
 
-
     def check_backup_properties(self):
         """  
             Coleta do usuário propriedades basicas sobre execução do backup
@@ -96,6 +95,7 @@ class TaskBackup(BackupPropriets):
         # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
         self.files_to_backup.remove('appData') # Remove appData foulder to make easy backup
+        
         
         for file in self.files_to_backup:
             # Pega o diretorio base de origem e junta com o nome do diretorio.
@@ -138,9 +138,11 @@ class TaskBackup(BackupPropriets):
         # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
 
-        
-        if self.backup_mode == 'default_mode':
+        print('Realizando backup....')
+        if self.full_backup:
             self.default_backup()
+        else:
+            self.full_backup()
         
         if self.compress_backup:
             try:
