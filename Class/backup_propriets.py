@@ -7,7 +7,7 @@ class BackupPropriets(TaskOrganizer):
     """
     def __init__(self):
         super().__init__()
-        self.dir_source_backup = self.paths_user['homeUser']
+        self.dir_source_backup = self.paths_user['homeUser'] # Diretorio inicial do user
         self.dir_dest_backup = self.paths_user['homeUser']
         self.backup_file_name = 'Backup' + self.HOSTNAME.upper() + self.time_system \
         + '_' + self.date_system

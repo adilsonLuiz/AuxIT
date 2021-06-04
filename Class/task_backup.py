@@ -59,7 +59,10 @@ class TaskBackup(BackupPropriets):
         else:
             self.change_dir(path_save_file)
             
-        shutil.make_archive(self.backup_name_now, 'zip', base_dir=path_archive,root_dir=self.paths_user['desktop']) # Criando ZIP file do backup
+        shutil.make_archive(self.backup_name_now, 'zip', \
+                            base_dir=path_archive, \
+                            root_dir=self.paths_user['desktop']
+                            ) # Criando ZIP file do backup
         
     def send_backup_file_to_mail(self, mail_adress: str, mail_password:str):
         #TODO enviar o arquivo de backup por email
@@ -93,7 +96,13 @@ class TaskBackup(BackupPropriets):
             except PermissionError:
                 pass
         if self.compress_backup:
-            self.compress_backup_file(dest_path)
+            try:
+                self.compress_backup_file(dest_path)
+            except ValueError:
+                pass
+            finally:
+                print('Backup Finalizado')
+
 
         #self.delete_all_file(dest_path)
             
