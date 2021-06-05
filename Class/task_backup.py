@@ -73,7 +73,7 @@ class TaskBackup(BackupPropriets):
         """  
             Coleta do usuário propriedades basicas sobre execução do backup
         """
-        bkp_compress = validator.read_option('Comprimir backup[1 - Sim 2- Não]: ')
+        bkp_compress = validator.read_option('Comprimir backup[1 - Sim 2 - Não]: ')
         bkp_type = validator.read_option('1 - Backup Full(Com appData)\n2 - Ligth(Sem appData) \n\nType:')
         if bkp_compress == 1:
             self.compress_backup = True
@@ -85,7 +85,7 @@ class TaskBackup(BackupPropriets):
         else:
             self.full_backup = False
 
-    def default_backup(self):
+    def do_default_backup(self):
         """  
             Realiza um backup leve, excluindo a pasta AppData da lista de pastas para backup
         """
@@ -108,7 +108,7 @@ class TaskBackup(BackupPropriets):
             except PermissionError:
                 pass
 
-    def full_backup(self):
+    def do_full_backup(self):
         """  
             Realiza o backup completo do user, incluindo a pasta appData
         """
@@ -140,9 +140,9 @@ class TaskBackup(BackupPropriets):
 
         print('Realizando backup....')
         if self.full_backup:
-            self.default_backup()
+            self.do_full_backup()
         else:
-            self.full_backup()
+            self.do_default_backup()
         
         if self.compress_backup:
             try:
