@@ -10,7 +10,7 @@ class TaskCommands(SystemPropriets):
 
     def __init__(self):
         super().__init__()
-    
+
     @staticmethod
     def add_user() -> None:
         """  
@@ -23,7 +23,6 @@ class TaskCommands(SystemPropriets):
 
         cmd(f'net user "{name}" {passwd} /add')
 
-
     def remove_user(self) -> None:
         """  
         Delete um usuario do sistema.
@@ -34,7 +33,6 @@ class TaskCommands(SystemPropriets):
         name = input('Usuário a remover(Digite o nome): ')
         cmd(f'net user "{name}" /delete')
 
-
     def change_passwd(self) -> None:
         """Lista os usuários no OS e muda a senha baseado, na escolha do usuário.
         """
@@ -43,7 +41,6 @@ class TaskCommands(SystemPropriets):
         self.list_users()
         username = input('Informe usuário a mudar senha: ')
         cmd(f'net user {username} *')
-
 
     def list_users(self) -> None:
         """  

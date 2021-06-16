@@ -9,9 +9,10 @@ def check_main_module() -> int:
             [3] - Install softwares.
             [4] - Backups.
         '''
-        )
+          )
     main_module = validator.read_option('Informe um modulo: ')
     return main_module
+
 
 def banner():
     clear_scream()
@@ -25,8 +26,7 @@ def banner():
             "*╚══╝╚══╝*╚══════╝╚══════╝╚══════╝*╚═════╝*╚═════╝*╚═╝*****╚═╝╚══════╝*******╚═╝****╚═════╝*****╚═╝**╚═╝*╚═════╝*╚═╝**╚═╝╚═╝***╚═╝********╚═╝╚═╝*╚═════╝*";
             "*********************************************************************************************************************************************************";
         \033[m'''
-    )
-
+          )
 
 
 def menu_suit():
@@ -38,8 +38,7 @@ def menu_suit():
         '''
             [1] - Configurar maquina recem formatada.
         '''
-        )
- 
+    )
 
 
 def menu_user():
@@ -55,7 +54,6 @@ def menu_user():
     )
 
 
-
 def menu_files():
     clear_scream()
     print(
@@ -69,8 +67,6 @@ def menu_files():
     )
 
 
-
-
 def menu_backup():
     clear_scream()
     print(
@@ -78,8 +74,7 @@ def menu_backup():
         [1] - Backup de usuário atual.
         [2] - Backup de outro usuário.
         '''
-        )
-
+    )
 
 
 def clear_scream():

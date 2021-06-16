@@ -4,6 +4,7 @@ from Class.task_organizer import TaskOrganizer
 from Class.task_backup import TaskBackup
 from Class.task_script import TaskScript
 
+
 def read_option(op):
     while True:
         try:
@@ -33,7 +34,7 @@ def check_modules_options(main_module):
     """  
         Executa os modulos do programa com base na escolha do modulo principal
     """
-    if main_module == 1: # User option
+    if main_module == 1:  # User option
         user = TaskCommands()
         sub_module = read_submodule('user')
         if sub_module == 1:
@@ -42,7 +43,7 @@ def check_modules_options(main_module):
             user.remove_user()
         elif sub_module == 3:
             user.change_passwd()
-    elif main_module == 2: # Files
+    elif main_module == 2:  # Files
         files = TaskOrganizer()
         sub_module = read_submodule('files')
         if sub_module == 1:
@@ -56,20 +57,13 @@ def check_modules_options(main_module):
             files.delete_file_by_extension()
         elif sub_module == 5:
             files.make_radom_files()
-    elif main_module == 3: # Adequar maquina
+    elif main_module == 3:  # Adequar maquina
         prepare_machine = TaskScript()
         sub_module = read_submodule('suit')
         prepare_machine.execute_script('installSoftwares.ps1')
-    elif main_module == 4: # Backup module
+    elif main_module == 4:  # Backup module
         backup = TaskBackup()
         sub_module = read_submodule('backup')
         if sub_module == 1:
             backup.check_backup_properties()
             backup.execute_backup()
-
-
-
-        
-
-
-

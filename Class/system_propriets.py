@@ -31,7 +31,6 @@ class SystemPropriets(object):
         self.time_system = self.get_time_system()
         self.date_system = self.get_date_system()
 
-
     @staticmethod
     def get_date_system() -> str:
         from datetime import date
@@ -48,7 +47,6 @@ class SystemPropriets(object):
     def get_architecture() -> str:
         from platform import architecture
         return architecture()[0]
-
 
     def get_all_user(self) -> list:
         """Coleta dentro do OS uma lista com o nome de todos os usuários que possuam diretorio,
@@ -78,10 +76,8 @@ class SystemPropriets(object):
 
         return getcwd()
 
-
     def set_cwd(self, path) -> None:
         self.cwd = path
-
 
     def set_path_system(self) -> list:
         # Caminhos básicos para arquivos de configuração windows
@@ -94,12 +90,11 @@ class SystemPropriets(object):
 
         return paths_system
 
-
     def get_path_user(self) -> list:
         """ Configura caminhos padrões usado pelo programa principal.
             Return
                 path_user (dict): Caminhos defualt pré definido na função.  
-        
+
         """
         path_user = {
             'desktop': 'C:\\Users\\' + self.HOSTNAME + '\\Desktop\\',
@@ -119,7 +114,6 @@ class SystemPropriets(object):
         from os import getlogin
 
         return getlogin()
-
 
     def __str__(self):
         return(

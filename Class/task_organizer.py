@@ -19,7 +19,6 @@ class TaskOrganizer(TaskCommands):
         self.default_extension = self.get_extension_files_default()
         self.init_default_dir()  # Checa e cria os diretorios para organização
 
-
     def get_default_dir(self):
         """ 
             Define uma lista com o caminho dos diretorios default para mover os arquivos
@@ -35,7 +34,6 @@ class TaskOrganizer(TaskCommands):
         ]
         )
 
-
     def get_extension_files_default(self) -> dict:
         """
             Define uma estrutura padrão que contem dados relacionados a extesão de arquivos.
@@ -47,8 +45,7 @@ class TaskOrganizer(TaskCommands):
                  'msFiles': ['.xlsx', '.xls', '.ppt', '.pps'],
                  'picture': ['.jpeg', '.mpeg']
                  }
-        )
-
+                )
 
     def get_extension_files_list(self, list_file) -> list:
         """
@@ -79,13 +76,11 @@ class TaskOrganizer(TaskCommands):
             list_extension[1].append(file_stat[1])
         return list_extension
 
-
     def set_default_path_to_move_files(self, path: str):
         """  
             Atribui um novo valor ao diretorio padrão para mover os arquivos.
         """
         self.default_path_to_move_files = path
-
 
     def make_radom_files(self, qtd_files_to_create=5,
                          extension_file='txt',
@@ -120,7 +115,6 @@ class TaskOrganizer(TaskCommands):
             )
             temp_file_name = str(randint(0, RAND_RANGE))
 
-
     def init_default_dir(self) -> None:
         """  
             Cria os diretorios default do programa no CWD atual, para armazenar os arquivos organizados.
@@ -136,7 +130,6 @@ class TaskOrganizer(TaskCommands):
             else:
                 self.create_dir(dir)
                 print(dir)
-
 
     def organize_files(self, path_to_organize='desktop', dest_path='document') -> None:
         """
@@ -159,7 +152,8 @@ class TaskOrganizer(TaskCommands):
         file_getting = ls()  # Coletando arquivos no CWD atual
         extension_file_getting = self.get_extension_files_list(
             file_getting)  # Obtendo uma lista em cima dos arquivos coletados
-        extension_file_getting = extension_file_getting[1]  # Usando slicing para pegar a lista de extensões apenas.
+        # Usando slicing para pegar a lista de extensões apenas.
+        extension_file_getting = extension_file_getting[1]
 
         if not extension_file_getting:
             print('Não há arquivos para serem organizados')
@@ -168,19 +162,25 @@ class TaskOrganizer(TaskCommands):
         # Usadas no loop
 
         finish_file = False  # Determina o final do loop
-        extension_stat = extension_file_getting[0]  # Armazena a extesão que esta no atual momento da iteração
+        # Armazena a extesão que esta no atual momento da iteração
+        extension_stat = extension_file_getting[0]
 
         while not finish_file:  # O loop ira finalizar quando a lista de extensão estiver vazia
             if extension_stat in self.default_extension['texto']:
-                self.move_file_by_extension(extension_stat, self.DEFAULT_DIR_LIST[0])
+                self.move_file_by_extension(
+                    extension_stat, self.DEFAULT_DIR_LIST[0])
             elif extension_stat in self.default_extension['msFiles']:
-                self.move_file_by_extension(extension_stat, self.DEFAULT_DIR_LIST[1])
+                self.move_file_by_extension(
+                    extension_stat, self.DEFAULT_DIR_LIST[1])
             elif extension_stat in self.default_extension['midia']:
-                self.move_file_by_extension(extension_stat, self.DEFAULT_DIR_LIST[2])
+                self.move_file_by_extension(
+                    extension_stat, self.DEFAULT_DIR_LIST[2])
             elif extension_stat in self.default_extension['picture']:
-                self.move_file_by_extension(extension_stat, self.DEFAULT_DIR_LIST[3])
+                self.move_file_by_extension(
+                    extension_stat, self.DEFAULT_DIR_LIST[3])
             else:  # Outros arquivos
-                self.move_file_by_extension(extension_stat, self.DEFAULT_DIR_LIST[4])
+                self.move_file_by_extension(
+                    extension_stat, self.DEFAULT_DIR_LIST[4])
 
             # Update extension list
             while extension_stat in extension_file_getting:
@@ -197,12 +197,12 @@ class TaskOrganizer(TaskCommands):
                 finish_file = True
 
             # Tenta atribuir para a variavel temporario de extensão um novo valor de extensão que exista, pós exclusão.
-            try: # Como o elemento foi excluido da lista, usamos uma constante 0 para pegar sempre o 1º indice
-                extension_stat = extension_file_getting[0]  
+            try:  # Como o elemento foi excluido da lista, usamos uma constante 0 para pegar sempre o 1º indice
+                extension_stat = extension_file_getting[0]
             except IndexError:
                 print(f'Todos arquivos foram movidos com sucesso')
-                print(f'Local raiz onde arquivos estão: "{self.default_path_to_move_files}"')
-
+                print(
+                    f'Local raiz onde arquivos estão: "{self.default_path_to_move_files}"')
 
     def delete_file_by_extension(self, path_to_delete_files='downloads') -> None:
         """  
@@ -219,9 +219,8 @@ class TaskOrganizer(TaskCommands):
         files_plus_extension = list()
 
         for file, files in enumerate(files_to_delete[1]):
-            files_plus_extension.append(''.join(files_to_delete[0][file]) + ''.join(files_to_delete[1][file]))
+            files_plus_extension.append(
+                ''.join(files_to_delete[0][file]) + ''.join(files_to_delete[1][file]))
 
         for file in files_plus_extension:
             rm(join(self.cwd, file))
-
-

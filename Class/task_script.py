@@ -4,14 +4,15 @@ from Class.task_organizer import TaskOrganizer
 class TaskScript(TaskOrganizer):
     """  
         Classe criada para manipular operações relacionada ao script.
-        
+
     """
 
     def __init__(self):
         super().__init__()
         self.SHELL_NAME = 'powershell'
         self.default_name_scripts = self.get_default_name_scripts()
-        self.TEMP_NAME_DIR_SCRIPTING = self.paths_user['temp'] + 'script_temp\\'
+        self.TEMP_NAME_DIR_SCRIPTING = self.paths_user['temp'] + \
+            'script_temp\\'
         self.create_temp_dir_to_scripting()
         self.download_script_files()
 
@@ -45,7 +46,7 @@ class TaskScript(TaskOrganizer):
         except ImportError:
             print('Erro: Module "googledrivedownloader" necessario.')
             print('No terminal tente executar pip install googledrivedownloader')
-            
+
         id_files = ['1otJvFf6DjRD43KeyWTL2oHeTO-IlxCFk',
                     '1d3pgWvQ-NbXQpmFMdJrC-Bh6wJ1kIDKd',
                     ]
@@ -62,4 +63,5 @@ class TaskScript(TaskOrganizer):
         """
 
         from os import system
-        system(self.SHELL_NAME + ' ' + self.TEMP_NAME_DIR_SCRIPTING + script_name)
+        system(self.SHELL_NAME + ' ' +
+               self.TEMP_NAME_DIR_SCRIPTING + script_name)
