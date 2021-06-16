@@ -39,7 +39,8 @@ class TaskBackup(BackupPropriets):
 
     def set_percent_backup(self, valuer:int):
         self.percent_backup = valuer
-    
+
+
     def compress_backup_file(self, path_archive: str, path_save_file=None):
         import shutil
         #TODO Verificar por que nome de backup esta vindo user\hostname\backup
@@ -54,10 +55,12 @@ class TaskBackup(BackupPropriets):
                             base_dir=path_archive, \
                             root_dir=self.paths_user['desktop']
                             ) # Criando ZIP file do backup
-        
+
+
     def send_backup_file_to_mail(self, mail_adress: str, mail_password:str):
         #TODO enviar o arquivo de backup por email
         pass
+
 
     def create_backup_dir(self):
         from os import makedirs
@@ -68,6 +71,7 @@ class TaskBackup(BackupPropriets):
             makedirs(path_backup)
         else:
             pass
+
 
     def check_backup_properties(self):
         """  
@@ -84,6 +88,7 @@ class TaskBackup(BackupPropriets):
             self.full_backup = True
         else:
             self.full_backup = False
+
 
     def do_default_backup(self):
         """  
@@ -107,6 +112,7 @@ class TaskBackup(BackupPropriets):
                 pass
             except PermissionError:
                 pass
+
 
     def do_full_backup(self):
         """  
@@ -152,7 +158,7 @@ class TaskBackup(BackupPropriets):
             finally:
                 print('Backup Finalizado')
 
-        #TODO excluir arquivo de backup do HD
+        #TODO excluir diretorio de backup do HD
         
             
 

@@ -197,9 +197,8 @@ class TaskOrganizer(TaskCommands):
                 finish_file = True
 
             # Tenta atribuir para a variavel temporario de extensão um novo valor de extensão que exista, pós exclusão.
-            try:
-                extension_stat = extension_file_getting[
-                    0]  # Como o elemento foi excluido da lista, usamos uma constante 0 para pegar sempre o 1º indice
+            try: # Como o elemento foi excluido da lista, usamos uma constante 0 para pegar sempre o 1º indice
+                extension_stat = extension_file_getting[0]  
             except IndexError:
                 print(f'Todos arquivos foram movidos com sucesso')
                 print(f'Local raiz onde arquivos estão: "{self.default_path_to_move_files}"')
@@ -207,7 +206,8 @@ class TaskOrganizer(TaskCommands):
 
     def delete_file_by_extension(self, path_to_delete_files='downloads') -> None:
         """  
-
+            Deleta todos os arquivos existente dentro do diretorio aonde é executado.
+            # TODO implementar metodo para apagar todos os diretorios e subdiretorios.
         """
         from os import remove as rm
         from os import listdir as ls

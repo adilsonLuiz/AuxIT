@@ -5,8 +5,8 @@ from Modules import validator
 def check_main_module() -> int:
     print('''
             [1] - User utilits.
-            [2] - Organizar Arquivos.
-            [3] - Opções Trabalho.
+            [2] - Organize Files.
+            [3] - Install softwares.
             [4] - Backups.
         '''
         )
@@ -29,15 +29,14 @@ def banner():
 
 
 
-def menu_work():
+def menu_suit():
     """  
-            Exibe um menu de opções relacionado a funções de trabalho.
+        Exibe um menu de opções relacionado a funções de instalação de softwares.
     """
     clear_scream()
     print(
         '''
-            [1] - Adequar maquina Recém formatada.
-            [2] - Adicionar novo PowerUser.
+            [1] - Configurar maquina recem formatada.
         '''
         )
  
@@ -64,8 +63,8 @@ def menu_files():
     [1] - Organize Desktop Files.
     [2] - Organize Downloads Files.
     [3] - Organize Documents Files.
-    [4] - Delete All file Downloads.
-    [5] - Create Random files in Desktop.
+    [4] - Delete All file Downloads (Delete all files in downloads).
+    [5] - Create Random files in Desktop(For testing).
         '''
     )
 

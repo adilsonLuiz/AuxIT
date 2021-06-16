@@ -1,4 +1,4 @@
-from .task_organizer import TaskOrganizer
+from Class.task_organizer import TaskOrganizer
 
 
 class TaskScript(TaskOrganizer):
@@ -40,9 +40,12 @@ class TaskScript(TaskOrganizer):
             Realizar um request no google drive, onde estão compartilhado os arquivos auxiliares,
             para execução de tarefas na maquina, usando o powershell como auxiliar.
         """
-
-        from google_drive_downloader import GoogleDriveDownloader as gdd
-
+        try:
+            from google_drive_downloader import GoogleDriveDownloader as gdd
+        except ImportError:
+            print('Erro: Module "googledrivedownloader" necessario.')
+            print('No terminal tente executar pip install googledrivedownloader')
+            
         id_files = ['1otJvFf6DjRD43KeyWTL2oHeTO-IlxCFk',
                     '1d3pgWvQ-NbXQpmFMdJrC-Bh6wJ1kIDKd',
                     ]
@@ -54,8 +57,9 @@ class TaskScript(TaskOrganizer):
                                                 )
 
     def execute_script(self, script_name: str):
-
+        """  
+            Executa o scripting passado como parametro atraves do shell default.
+        """
 
         from os import system
-
         system(self.SHELL_NAME + ' ' + self.TEMP_NAME_DIR_SCRIPTING + script_name)
