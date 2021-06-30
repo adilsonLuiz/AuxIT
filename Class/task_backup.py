@@ -32,10 +32,24 @@ class TaskBackup(BackupPropriets):
             Define todos os arquivos e diretorios 
             que serão salvos no diretorio raiz do usuario.
         """
+
+        from os import listdir
+
+        #TODO criar logica para pegar todas as pastas
         home_files_backup = [
             'Desktop', 'Downloads', 'Documents',
-            'Videos', 'Pictures', 'appData'
+            'Videos', 'Pictures', 'AppData\\Roaming',
         ]
+        self.change_dir(self.paths_user['appdata'])
+
+        # Check key folder insider AppData\Local\
+        for content in listdir(self.paths_user['applocal']):
+            if content == 'Google':
+                home_files_backup.append('AppData\\Local\\' + content)
+            elif content == 'Microsoft':
+                home_files_backup.append('AppData\\Local\\' + content)
+            elif content == 'Programs':
+                home_files_backup.append('AppData\\Local\\' + content)
 
         return home_files_backup
 
@@ -77,47 +91,15 @@ class TaskBackup(BackupPropriets):
         """
         bkp_compress = validator.read_option(
             'Comprimir backup[1 - Sim 2 - Não]: ')
-        bkp_type = validator.read_option(
-            '1 - Backup Full(Com appData)\n2 - Ligth(Sem appData) \n\nType:')
         if bkp_compress == 1:
             self.compress_backup = True
         else:
             self.compress_backup = False
 
-        if bkp_type == 1:
-            self.full_backup = True
-        else:
-            self.full_backup = False
-
-    def do_default_backup(self):
+    def do_backup(self):
         """  
-            Realiza um backup leve, excluindo a pasta AppData da lista de pastas para backup
+            Realiza um backup.
         """
-        import shutil
-        from os.path import join
-
-        # Junta o diretorio abs de destino o nome do backup para criar um diretorio abs destino.
-        dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
-        # Remove appData foulder to make easy backup
-        self.files_to_backup.remove('appData')
-
-        for file in self.files_to_backup:
-            # Pega o diretorio base de origem e junta com o nome do diretorio.
-            file_to_backup = self.dir_source_backup + file
-            print(f'{file_to_backup} -> {dest_path + file}')
-            try:
-                shutil.copytree(join(self.dir_source_backup,
-                                file), join(dest_path, file))
-            except shutil.Error:
-                pass
-            except PermissionError:
-                pass
-
-    def do_full_backup(self):
-        """  
-            Realiza o backup completo do user, incluindo a pasta appData
-        """
-
         import shutil
         from os.path import join
 
@@ -135,6 +117,7 @@ class TaskBackup(BackupPropriets):
                 pass
             except PermissionError:
                 pass
+
 
     def execute_backup(self):
         import shutil
@@ -144,10 +127,7 @@ class TaskBackup(BackupPropriets):
         dest_path = self.dir_dest_backup + self.backup_file_name + '\\'
 
         print('Realizando backup....')
-        if self.full_backup:
-            self.do_full_backup()
-        else:
-            self.do_default_backup()
+        self.do_backup()
 
         if self.compress_backup:
             try:

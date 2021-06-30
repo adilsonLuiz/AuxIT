@@ -106,6 +106,7 @@ class SystemPropriets(object):
             'startup': 'C:\\Users\\' + self.HOSTNAME + '\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programas\\',
             'temp': 'C:\\Users\\' + self.HOSTNAME + '\\AppData\\Local\\Temp\\',
             'homeUser': 'C:\\Users\\' + self.HOSTNAME + '\\',
+            'appdata': 'C:\\Users\\' + self.HOSTNAME + '\\AppData\\'
         }
         return path_user
 

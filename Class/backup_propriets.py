@@ -21,7 +21,6 @@ class BackupPropriets(TaskOrganizer):
         self.dir_dest_backup = self.paths_user['homeUser']
         self.backup_file_name = 'Backup' + self.HOSTNAME.upper() + self.time_system \
             + '_' + self.date_system
-        self.full_backup = False
         self.percent_backup = 0
         self.backup_finish = False
         self.report_error_backup = {}
